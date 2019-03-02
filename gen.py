@@ -46,7 +46,7 @@ for f in os.listdir('html/tmp'):
         post = post.replace('<aside></aside>', "<aside>%s</aside>" % aside)
         post = post.replace('<footer></footer>', "<footer>%s</footer>" % footer)
         
-        post = post.replace('<nav></nav>', "<nav><h3>What to Read Next...</h3>%s</nav>" % ul)
+        post = post.replace('<nav></nav>', "<nav><h4>What to Read Next...</h4>%s</nav>" % ul)
         post = post.replace('<title></title>', "<title>%s | YOUR TITLE</title>" % ext(h1))
         
         open('html/'+f, 'w').write(post)
