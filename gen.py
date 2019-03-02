@@ -4,7 +4,6 @@ import os, re, sys, shutil
 from distutils.spawn import find_executable
 
 SUB_TITLE = "My Blog"
-NAV_TITLE = "What to Read Next..."
 
 if find_executable('hoedown') is None:
     print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
@@ -36,7 +35,7 @@ header = open('html/tmp/_header.html', 'r').read()
 aside = open('html/tmp/_aside.html', 'r').read()
 footer = open('html/tmp/_footer.html', 'r').read()
 
-base = base.replace('<nav></nav>', "<nav><h4>%s</h4>%s</nav>" % (NAV_TITLE, ul))
+base = base.replace('<nav></nav>', "<nav>%s</nav>" % ul)
 base = base.replace('<header></header>', "<header>%s</header>" % header)
 base = base.replace('<aside></aside>', "<aside>%s</aside>" % aside)
 base = base.replace('<footer></footer>', "<footer>%s</footer>" % footer)
