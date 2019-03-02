@@ -1,6 +1,6 @@
 # mdblog
 
-A simple static website(blog) generator with Markdown files.
+A simple static website(blog) generator for markdown files.
 
 ## Usage
 
