@@ -44,12 +44,10 @@ base = base.replace('<footer></footer>', "<footer>%s</footer>" % footer)
 for f in os.listdir('html/tmp'):
     if f not in ['_header.html', '_aside.html', '_footer.html']:
         frag = open('html/tmp/'+f, 'r').read()
-        date = ""
+        date = ''
         if re.match("^\d{6}-.+?\.html$", f):
             y, m, d = '20'+f[0:2], f[2:4], f[4:6]
-            d1 = "%s-%s-%s" % (y, m, d)
-            d2 = "%s.%s.%s" % (y, m, d)
-            date = '<time datetime="%s">%s</time>' % (d1, d2)
+            date = '<time datetime="%s">%s</time>' % ('-'.join([y,m,d]), '.'.join([y,m,d]))
         h1 = frag.split('\n', 1)[0]
         post = base.replace('<title></title>', "<title>%s | %s</title>" % (ext(h1), SUB_TITLE))
         post = post.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
