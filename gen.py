@@ -1,5 +1,4 @@
 #! /usr/bin/env python
-# -*- coding: utf-8 -*-
 import os, re, sys, shutil
 from distutils.spawn import find_executable
 
