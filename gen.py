@@ -47,9 +47,9 @@ for f in os.listdir('html/tmp'):
             d2 = "%s.%s.%s" % (y, m, d)
             date = '<time datetime="%s">%s</time>' % (d1, d2)
         h1 = frag.split('\n', 1)[0]
-        post = post.replace('<title></title>', "<title>%s | YOUR TITLE</title>" % ext(h1))
+        post = base.replace('<title></title>', "<title>%s | YOUR TITLE</title>" % ext(h1))
         post = post.replace('<nav></nav>', "<nav><h4>What to Read Next...</h4>%s</nav>" % ul)
-        post = base.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
+        post = post.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
         post = post.replace('<header></header>', "<header>%s</header>" % header)
         post = post.replace('<aside></aside>', "<aside>%s</aside>" % aside)
         post = post.replace('<footer></footer>', "<footer>%s</footer>" % footer)        
