@@ -33,12 +33,12 @@ header = open('html/tmp/_header.html', 'r').read()
 aside = open('html/tmp/_aside.html', 'r').read()
 footer = open('html/tmp/_footer.html', 'r').read()
 
+subtitle = re.search('<title>(.*)</title>', base).group(1)
+
 base = base.replace('<nav></nav>', "<nav>%s</nav>" % ul)
 base = base.replace('<header></header>', "<header>%s</header>" % header)
 base = base.replace('<aside></aside>', "<aside>%s</aside>" % aside)
 base = base.replace('<footer></footer>', "<footer>%s</footer>" % footer)
-
-subtitle = open('theme/subtitle.txt', 'r').readline().strip()
 
 for f in os.listdir('html/tmp'):
     if f not in ['_header.html', '_aside.html', '_footer.html']:
@@ -48,7 +48,7 @@ for f in os.listdir('html/tmp'):
             y, m, d = '20'+f[0:2], f[2:4], f[4:6]
             date = '<time datetime="%s">%s</time>' % ('-'.join([y,m,d]), '.'.join([y,m,d]))
         h1 = frag.split('\n', 1)[0]
-        post = base.replace('<title></title>', "<title>%s | %s</title>" % (ext(h1), subtitle))
+        post = base.replace('<title>%s</title>' % subtitle, "<title>%s | %s</title>" % (ext(h1), subtitle))
         post = post.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
         open('html/'+f, 'w').write(post)
 
