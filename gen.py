@@ -45,8 +45,8 @@ for f in os.listdir('html/tmp'):
         frag = open('html/tmp/'+f, 'r').read()
         date = ''
         if re.match("^\d{6}-.+?\.html$", f):
-            y, m, d = '20'+f[0:2], f[2:4], f[4:6]
-            date = '<time datetime="%s">%s</time>' % ('-'.join([y,m,d]), '.'.join([y,m,d]))
+            yy, mm, dd = '20'+f[0:2], f[2:4], f[4:6]
+            date = '<time datetime="%s">%s</time>' % ('-'.join([yy,mm,dd]), '.'.join([yy,str(int(mm)),str(int(dd))]))
         h1 = frag.split('\n', 1)[0]
         post = base.replace('<title>%s</title>' % subtitle, "<title>%s | %s</title>" % (ext(h1), subtitle))
         post = post.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
