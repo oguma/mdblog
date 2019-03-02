@@ -3,6 +3,9 @@
 import os, re, sys, shutil
 from distutils.spawn import find_executable
 
+SUB_TITLE = "My Blog"
+NAV_TITLE = "What to Read Next..."
+
 if find_executable('hoedown') is None:
     print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
     sys.exit()
@@ -33,6 +36,11 @@ header = open('html/tmp/_header.html', 'r').read()
 aside = open('html/tmp/_aside.html', 'r').read()
 footer = open('html/tmp/_footer.html', 'r').read()
 
+base = base.replace('<nav></nav>', "<nav><h4>%s</h4>%s</nav>" % (NAV_TITLE, ul))
+base = base.replace('<header></header>', "<header>%s</header>" % header)
+base = base.replace('<aside></aside>', "<aside>%s</aside>" % aside)
+base = base.replace('<footer></footer>', "<footer>%s</footer>" % footer)
+
 for f in os.listdir('html/tmp'):
     if f not in ['_header.html', '_aside.html', '_footer.html']:
         frag = open('html/tmp/'+f, 'r').read()
@@ -43,12 +51,8 @@ for f in os.listdir('html/tmp'):
             d2 = "%s.%s.%s" % (y, m, d)
             date = '<time datetime="%s">%s</time>' % (d1, d2)
         h1 = frag.split('\n', 1)[0]
-        post = base.replace('<title></title>', "<title>%s | YOUR TITLE</title>" % ext(h1))
-        post = post.replace('<nav></nav>', "<nav><h4>What to Read Next...</h4>%s</nav>" % ul)
+        post = base.replace('<title></title>', "<title>%s | %s</title>" % (ext(h1), SUB_TITLE))
         post = post.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
-        post = post.replace('<header></header>', "<header>%s</header>" % header)
-        post = post.replace('<aside></aside>', "<aside>%s</aside>" % aside)
-        post = post.replace('<footer></footer>', "<footer>%s</footer>" % footer)        
         open('html/'+f, 'w').write(post)
 
 shutil.rmtree('html/tmp')
