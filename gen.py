@@ -3,9 +3,7 @@
 import os, re, sys, shutil
 from distutils.spawn import find_executable
 
-# if find_executable('pandoc') is None:
 if find_executable('hoedown') is None:
-    # print("Please, install 'pandoc'. https://pandoc.org/installing.html")
     print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
     sys.exit()
 
@@ -16,11 +14,9 @@ os.mkdir('html')
 os.mkdir('html/tmp')
 
 shutil.copytree('md/img', 'html/img')
-# shutil.copytree('theme/imgbase', 'html/imgbase')
 shutil.copytree('theme/css', 'html/css')
 shutil.copyfile('theme/_htaccess', 'html/.htaccess')
 
-# os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'pandoc "${0}" -o "../html/tmp/${0%.md}.html"\' {} \;')
 os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'hoedown --tables "${0}" > "../html/tmp/${0%.md}.html"\' {} \;')
 
 ext = lambda s: re.sub('<[^<>]+>', '', s)
