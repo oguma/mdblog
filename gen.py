@@ -3,8 +3,6 @@
 import os, re, sys, shutil
 from distutils.spawn import find_executable
 
-SUB_TITLE = "My Blog"
-
 if find_executable('hoedown') is None:
     print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
     sys.exit()
@@ -40,6 +38,8 @@ base = base.replace('<header></header>', "<header>%s</header>" % header)
 base = base.replace('<aside></aside>', "<aside>%s</aside>" % aside)
 base = base.replace('<footer></footer>', "<footer>%s</footer>" % footer)
 
+subtitle = open('theme/subtitle.txt', 'r').readline().strip()
+
 for f in os.listdir('html/tmp'):
     if f not in ['_header.html', '_aside.html', '_footer.html']:
         frag = open('html/tmp/'+f, 'r').read()
@@ -48,7 +48,7 @@ for f in os.listdir('html/tmp'):
             y, m, d = '20'+f[0:2], f[2:4], f[4:6]
             date = '<time datetime="%s">%s</time>' % ('-'.join([y,m,d]), '.'.join([y,m,d]))
         h1 = frag.split('\n', 1)[0]
-        post = base.replace('<title></title>', "<title>%s | %s</title>" % (ext(h1), SUB_TITLE))
+        post = base.replace('<title></title>', "<title>%s | %s</title>" % (ext(h1), subtitle))
         post = post.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
         open('html/'+f, 'w').write(post)
 
