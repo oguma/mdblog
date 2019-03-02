@@ -40,8 +40,14 @@ footer = open('html/tmp/_footer.html', 'r').read()
 for f in os.listdir('html/tmp'):
     if f not in ['_header.html', '_aside.html', '_footer.html']:
         frag = open('html/tmp/'+f, 'r').read()
+        date = ""
+        if re.match("^\d{6}-.+?\.html$", f):
+            y, m, d = '20'+f[0:2], f[2:4], f[4:6]
+            d1 = "%s-%s-%s" % (y, m, d)
+            d2 = "%s.%s.%s" % (y, m, d)
+            date = '<time datetime="%s">%s</time>' % (d1, d2)
         h1 = frag.split('\n', 1)[0]
-        post = base.replace('<article></article>', "<article>%s</article>" % frag)
+        post = base.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
         post = post.replace('<header></header>', "<header>%s</header>" % header)
         post = post.replace('<aside></aside>', "<aside>%s</aside>" % aside)
         post = post.replace('<footer></footer>', "<footer>%s</footer>" % footer)
