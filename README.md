@@ -9,7 +9,6 @@ A simple static website(blog) generator with Markdown files.
 ## Requirements
 
 - [Hoedown](https://github.com/hoedown/hoedown)
-- [<s>(Pandoc)</s>](http://pandoc.org/installing.html)
 
 ## See also
 
