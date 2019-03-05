@@ -15,7 +15,7 @@ os.mkdir('html/tmp')
 shutil.copytree('md/img', 'html/img')
 shutil.copytree('theme/css', 'html/css')
 shutil.copyfile('theme/_htaccess', 'html/.htaccess')
-shutil.copyfile('theme/favicon.ico', 'html/favicon.ico')
+# shutil.copyfile('theme/favicon.ico', 'html/favicon.ico')
 
 os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'hoedown --tables "${0}" > "../html/tmp/${0%.md}.html"\' {} \;')
 
