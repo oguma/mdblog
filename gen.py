@@ -45,7 +45,7 @@ for f in os.listdir('html/tmp'):
         frag = open('html/tmp/'+f, 'r').read()
         h1 = frag.split('\n', 1)[0]
         desc, DESC_NUM = '', 300
-        for s in re.sub('<.*?>', '', frag).split('\n')[1:]:
+        for s in ext(frag).split('\n')[1:]:
             s = s.strip()
             if len(desc+s) > DESC_NUM:
                 break
