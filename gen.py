@@ -4,6 +4,7 @@ from distutils.spawn import find_executable
 
 if find_executable('hoedown') is None:
     print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
+    # print("Please, install 'pandoc'. https://pandoc.org/installing.html")
     sys.exit()
 
 if os.path.exists('html'):
@@ -19,6 +20,7 @@ shutil.copyfile('theme/robots.txt', 'html/robots.txt')
 # shutil.copyfile('theme/favicon.ico', 'html/favicon.ico')
 
 os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'hoedown --tables "${0}" > "../html/tmp/${0%.md}.html"\' {} \;')
+# os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'pandoc "${0}" -o "../html/tmp/${0%.md}.html"\' {} \;')
 
 ext = lambda s: re.sub('<[^<>]+>', '', s)
 
