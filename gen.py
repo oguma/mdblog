@@ -63,4 +63,11 @@ for f in os.listdir('html/tmp'):
         # post = post.replace('<div class="fb-like" data-href="https://example.com/"', '<div class="fb-like" data-href="example.com/%s"' % ('' if f == 'index.html' else f))
         open('html/'+f, 'w').write(post)
 
+sitemapxml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+for f in os.listdir('html'):
+    if f.endswith('.html'):
+        sitemapxml += '<url><loc>' + 'https://example.com/' + ('' if f == 'index.html' else f) + '</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>'
+sitemapxml += '</urlset>'
+open('html/sitemap.xml', 'w').write(sitemapxml)
+        
 shutil.rmtree('html/tmp')
