@@ -47,7 +47,7 @@ for f in os.listdir('html/tmp'):
     if f not in ['_header.html', '_aside.html', '_footer.html']:
         frag = open('html/tmp/'+f, 'r').read()
         h1 = frag.split('\n', 1)[0]
-        desc, DESC_NUM = '', 300
+        desc, DESC_NUM = '', 350
         for s in ext(frag).split('\n')[1:]:
             s = s.strip()
             if len(desc+s) > DESC_NUM:
