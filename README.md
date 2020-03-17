@@ -12,4 +12,4 @@ A simple static website(blog) generator for markdown files.
 
 ## See also
 
-[MacDown](https://github.com/MacDownApp/macdown)
+[MacDown](https://github.com/MacDownApp/macdown) ( or [PanWriter](https://panwriter.com))
