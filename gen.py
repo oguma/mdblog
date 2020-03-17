@@ -21,6 +21,7 @@ shutil.copyfile('theme/robots.txt', 'html/robots.txt')
 
 os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'hoedown --tables "${0}" > "../html/tmp/${0%.md}.html"\' {} \;')
 # os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'pandoc "${0}" -o "../html/tmp/${0%.md}.html"\' {} \;')
+# os.system('cd md && for %i in (*.md) do pandoc "%i" -o "../html/tmp/%~ni.html"')
 
 ext = lambda s: re.sub('<[^<>]+>', '', s)
 
