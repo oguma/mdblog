@@ -28,8 +28,9 @@ ext = lambda s: re.sub('<[^<>]+>', '', s)
 ul = "<ul>"
 for f in sorted(os.listdir('html/tmp'), reverse=True):
     if f not in ['index.html', '_header.html', '_aside.html', '_footer.html']:
-        h1 = open('html/tmp/'+f, 'r').readline().strip()
-        ul += "<li><a href='%s'>%s</a></li>" % (f, ext(h1))
+        if re.match("^\d{6}-.+?\.html$", f):
+            h1 = open('html/tmp/'+f, 'r').readline().strip()
+            ul += "<li><a href='%s'>%s</a></li>" % (f, ext(h1))
 ul += "</ul>"
 
 base = open('theme/base.html', 'r').read()
