@@ -2,3 +2,4 @@ body { padding: 1em; }
 footer { text-align: center; }
 time { display: block; text-align: right; font-style: italic; }
 li {margin: 0.5em 0;}
+/* nav ul li:nth-child(1n+5) { display: none; } */
