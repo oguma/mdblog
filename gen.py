@@ -75,6 +75,7 @@ for f in sorted(os.listdir('html'), reverse=True):
         else:
             sitemapxml += ('' if f == 'index.html' else f) + '</loc>\n    <lastmod/>'
         sitemapxml += '\n  </url>'
-sitemapxml += '\n</urlset>'open('html/sitemap.xml', 'w').write(sitemapxml)
+sitemapxml += '\n</urlset>'
+open('html/sitemap.xml', 'w').write(sitemapxml)
         
 shutil.rmtree('html/tmp')
