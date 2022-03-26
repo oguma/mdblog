@@ -73,7 +73,7 @@ for f in sorted(os.listdir('html'), reverse=True):
             lastmod = '-'.join(['20'+f[0:2], f[2:4], f[4:6]])
             sitemapxml += f + '</loc>\n    <lastmod>' + lastmod + '</lastmod>'
         else:
-            sitemapxml += ('' if f == 'index.html' else f) + '</loc>\n    <lastmod/>'
+            sitemapxml += ('' if f == 'index.html' else f) + '</loc>'
         sitemapxml += '\n  </url>'
 sitemapxml += '\n</urlset>'
 open('html/sitemap.xml', 'w').write(sitemapxml)
