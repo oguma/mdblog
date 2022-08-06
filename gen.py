@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 import os, re, sys, shutil
-import shutil
 
 if shutil.which('hoedown') is None:
     print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
