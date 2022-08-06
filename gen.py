@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import os, re, sys, shutil
 
 domain = "https://example.com/"
