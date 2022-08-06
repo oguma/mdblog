@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 import os, re, sys, shutil
 
+domain = "https://example.com/"
+
 if sys.platform != 'win32':
     if shutil.which('hoedown') is None:
         print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
@@ -73,7 +75,7 @@ for f in os.listdir('html/tmp'):
 sitemapxml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
 for f in sorted(os.listdir('html'), reverse=True):
     if f.endswith('.html'):
-        sitemapxml += '\n  <url>\n    <loc>' + 'https://example.com/'
+        sitemapxml += '\n  <url>\n    <loc>' + domain
         if re.match("^\d{6}-.+?\.html$", f):
             lastmod = '-'.join(['20'+f[0:2], f[2:4], f[4:6]])
             sitemapxml += f + '</loc>\n    <lastmod>' + lastmod + '</lastmod>'
