@@ -69,7 +69,6 @@ for f in os.listdir('html/tmp'):
         post = base.replace('<title>%s</title>' % subtitle, "<title>%s | %s</title>" % (ext(h1), subtitle))
         post = post.replace('<meta name="description" content="">', '<meta name="description" content="%s">' % desc)
         post = post.replace('<article></article>', "<article>%s%s</article>" % (frag, date))
-        # post = post.replace('<div class="fb-like" data-href="https://example.com/"', '<div class="fb-like" data-href="example.com/%s"' % ('' if f == 'index.html' else f))
         open('html/'+f, 'w').write(post)
 
 sitemapxml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
