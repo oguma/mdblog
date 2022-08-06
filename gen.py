@@ -1,10 +1,14 @@
 #! /usr/bin/env python
 import os, re, sys, shutil
 
-if shutil.which('hoedown') is None:
-    print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
-    # print("Please, install 'pandoc'. https://pandoc.org/installing.html")
-    sys.exit()
+if sys.platform != 'win32':
+    if shutil.which('hoedown') is None:
+        print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
+        sys.exit()
+else:
+    if shutil.which('pandoc') is None:
+        print("Please, install 'pandoc'. https://pandoc.org/installing.html")
+        sys.exit()
 
 if os.path.exists('html'):
     shutil.rmtree('html')
@@ -18,9 +22,11 @@ shutil.copyfile('theme/_htaccess', 'html/.htaccess')
 shutil.copyfile('theme/robots.txt', 'html/robots.txt')
 # shutil.copyfile('theme/favicon.ico', 'html/favicon.ico')
 
-os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'hoedown --tables "${0}" > "../html/tmp/${0%.md}.html"\' {} \;')
-# os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'pandoc "${0}" -o "../html/tmp/${0%.md}.html"\' {} \;')
-# os.system('cd md && for %i in (*.md) do pandoc "%i" -o "../html/tmp/%~ni.html"')
+if sys.platform != 'win32':
+    os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'hoedown --tables "${0}" > "../html/tmp/${0%.md}.html"\' {} \;')
+    # os.system('cd md && find . -iname "*.md" -type f -exec sh -c \'pandoc "${0}" -o "../html/tmp/${0%.md}.html"\' {} \;')
+else:
+    os.system('cd md && for %i in (*.md) do pandoc "%i" -o "../html/tmp/%~ni.html"')
 
 ext = lambda s: re.sub('<[^<>]+>', '', s)
 
