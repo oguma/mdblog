@@ -5,6 +5,10 @@ A simple static website(blog) generator for markdown files.
 ## Usage
 
     $ ./gen.py
+    
+    or
+    
+    $ python gen.py
 
 ## Requirements
 
