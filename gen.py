@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 import os, re, sys, shutil
-from distutils.spawn import find_executable
+import shutil
 
-if find_executable('hoedown') is None:
+if shutil.which('hoedown') is None:
     print("Please, install 'hoedown'. https://github.com/hoedown/hoedown")
     # print("Please, install 'pandoc'. https://pandoc.org/installing.html")
     sys.exit()
